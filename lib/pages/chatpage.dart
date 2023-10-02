@@ -2,6 +2,7 @@ import 'package:chat/model/chat.dart';
 import 'package:chat/model/message.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class chatpage extends StatelessWidget {
   chatpage({required this.email});
@@ -32,15 +33,14 @@ class chatpage extends StatelessWidget {
             appBar: AppBar(
               title: Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 100,
                   ),
                   Image.asset(
                     'assets/pngegg.png',
                     height: 75,
-                   
                   ),
-                  Text(
+                  const Text(
                     'chat',
                     style: TextStyle(
                         fontSize: 24, color: Color.fromARGB(255, 59, 89, 142)),
@@ -68,25 +68,24 @@ class chatpage extends StatelessWidget {
                     reverse: true,
                     controller: _scrollcontroller,
                     itemBuilder: (context, counter) {
-                        DateTime now= DateTime.parse(snapshot.data!.docs[counter]['attime']);
-                         int year = now.year;
-                         int month = now.month;
-                         int day = now.day;
-                         int hour = now.hour;
-                         int minute = now.minute;
-                      if (snapshot.data!.docs[counter]['E-mail']==email) {
-                      return localchatMe(
-                        message: messageslist[counter],
-                        data: '$month/$day/$year-$hour:$minute',
-                      );
-                      }else{
+                      DateTime now = DateTime.parse(
+                          snapshot.data!.docs[counter]['attime']);
+                      int year = now.year;
+                      int month = now.month;
+                      int day = now.day;
+                      int hour = now.hour;
+                      int minute = now.minute;
+                      if (snapshot.data!.docs[counter]['E-mail'] == email) {
+                        return localchatMe(
+                          message: messageslist[counter],
+                          data: '$month/$day/$year-$hour:$minute',
+                        );
+                      } else {
                         return localchatHe(
-                        message: messageslist[counter], 
-                        data: '$month/$day/$year-$hour:$minute',
-                      );
-
+                          message: messageslist[counter],
+                          data: '$month/$day/$year-$hour:$minute',
+                        );
                       }
-                      
                     },
                     itemCount: snapshot.data!.docs.length,
                   ),
@@ -94,15 +93,17 @@ class chatpage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(17),
                   child: TextField(
+                    cursorHeight: 20,
                     controller: controller,
                     onChanged: (value) {
                       message = value;
                     },
-                    cursorColor:const Color.fromARGB(255, 55, 90, 120),
+                    cursorColor: const Color.fromARGB(255, 55, 90, 120),
                     decoration: InputDecoration(
+                      
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide:const BorderSide(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: const BorderSide(
                               color: Color.fromARGB(255, 4, 21, 103))),
                       suffixIcon: GestureDetector(
                         onTap: () {
@@ -113,16 +114,15 @@ class chatpage extends StatelessWidget {
                           });
                           controller.clear();
                           _scrollDown();
-                         
                         },
-                        child:const Icon(
+                        child: const Icon(
                           Icons.send_rounded,
                           color: Color.fromARGB(255, 4, 21, 103),
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide:const BorderSide(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: const BorderSide(
                               color: Color.fromARGB(255, 4, 21, 103))),
                     ),
                   ),
@@ -135,14 +135,14 @@ class chatpage extends StatelessWidget {
             appBar: AppBar(
               title: Row(
                 children: [
-                 const SizedBox(
+                  const SizedBox(
                     width: 100,
                   ),
                   Image.asset(
                     'assets/pngegg.png',
                     height: 75,
                   ),
-                 const Text(
+                  const Text(
                     'chat',
                     style: TextStyle(
                         fontSize: 24, color: Color.fromARGB(255, 59, 89, 142)),
@@ -172,10 +172,8 @@ class chatpage extends StatelessWidget {
                     ),
                     Container(
                       alignment: Alignment.center,
-                      child:const Text(
-                        'loding...',
-                        style: TextStyle(fontSize: 40),
-                      ),
+                      child: const ModalProgressHUD(
+                          inAsyncCall: true, child: SizedBox()),
                     )
                   ]),
                 ),
@@ -183,30 +181,23 @@ class chatpage extends StatelessWidget {
                   padding: const EdgeInsets.all(17),
                   child: TextField(
                     controller: controller,
-                    onChanged: (value) {
-                      message = value;
-                    },
-                    cursorColor:const Color.fromARGB(255, 55, 90, 120),
+                    onChanged: (value) {},
+                    cursorColor: const Color.fromARGB(255, 55, 90, 120),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide:const BorderSide(
+                          borderSide: const BorderSide(
                               color: Color.fromARGB(255, 4, 21, 103))),
                       suffixIcon: GestureDetector(
-                        onTap: () {
-                          messages.add({
-                            'message': message,
-                          });
-                          controller.clear();
-                        },
-                        child:const Icon(
+                        onTap: () {},
+                        child: const Icon(
                           Icons.send_rounded,
                           color: Color.fromARGB(255, 4, 21, 103),
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide:const BorderSide(
+                          borderSide: const BorderSide(
                               color: Color.fromARGB(255, 4, 21, 103))),
                     ),
                   ),
@@ -222,7 +213,7 @@ class chatpage extends StatelessWidget {
   void _scrollDown() {
     _scrollcontroller.animateTo(
       0,
-      duration:const Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 200),
       curve: Curves.fastOutSlowIn,
     );
   }

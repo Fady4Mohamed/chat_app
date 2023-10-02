@@ -30,8 +30,8 @@ class rigster extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 19),
             child: Column(
               children: [
-                Row(
-                  children: const [
+               const Row(
+                  children:  [
                     Text(
                       'RIGSTER',
                       style: TextStyle(
