@@ -180,20 +180,16 @@ class chatpage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(17),
                   child: TextField(
-                    controller: controller,
-                    onChanged: (value) {},
+                    
                     cursorColor: const Color.fromARGB(255, 55, 90, 120),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                           borderSide: const BorderSide(
                               color: Color.fromARGB(255, 4, 21, 103))),
-                      suffixIcon: GestureDetector(
-                        onTap: () {},
-                        child: const Icon(
-                          Icons.send_rounded,
-                          color: Color.fromARGB(255, 4, 21, 103),
-                        ),
+                      suffixIcon: const Icon(
+                        Icons.send_rounded,
+                        color: Color.fromARGB(255, 4, 21, 103),
                       ),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),

@@ -1,9 +1,7 @@
 import 'package:chat/authCubit/auth_cubit_cubit.dart';
-import 'package:chat/widget/localbutton.dart';
 import 'package:chat/widget/localtextfeild.dart';
 import 'package:chat/pages/chatpage.dart';
 import 'package:chat/pages/rigster.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
