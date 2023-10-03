@@ -1,26 +1,23 @@
 import 'dart:ui';
-
 import 'package:chat/authCubit/auth_cubit_cubit.dart';
 import 'package:chat/pages/chatpage.dart';
+import 'package:chat/pages/rigster.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../widget/ncostombutton.dart';
 import '../widget/ncustomtextfield.dart';
 import '../widget/textontap.dart';
 
-class rigster extends StatefulWidget {
-  rigster({super.key});
-
+class nloginpage extends StatefulWidget {
   @override
-  State<rigster> createState() => _rigsterState();
+  _nloginpageState createState() => _nloginpageState();
 }
 
-class _rigsterState extends State<rigster> {
-  String? email, password;
+String? password, email;
+bool isLoding = false;
 
-  bool isLoding = false;
-
+class _nloginpageState extends State<nloginpage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -63,7 +60,7 @@ class _rigsterState extends State<rigster> {
                                       bottom: size.width * .1,
                                     ),
                                     child: Text(
-                                      'RIGSTER',
+                                      'SIGN IN',
                                       style: TextStyle(
                                         fontSize: 25,
                                         fontWeight: FontWeight.w600,
@@ -87,25 +84,28 @@ class _rigsterState extends State<rigster> {
                                     },
                                   ),
                                   textontap(
-                                    titel: 'you have an account',
+                                    titel: 'create a new Account',
                                     onTap: () {
-                                      Navigator.pop(context);
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return rigster();
+                                      }));
                                     },
                                   ),
                                   SizedBox(height: size.width * .25),
-                                  BlocConsumer<rigestercubit, authCubitState>(
+                                  BlocConsumer<loginCubitCubit, authCubitState>(
                                     listener: (context, state) {
-                                      if (state is regsterCubifaild) {
+                                      if (state is LoginCubitfaild) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(SnackBar(
                                           content: Text(state.massage),
                                         ));
                                         isLoding = false;
                                       }
-                                      if (state is regsterCubiloding) {
+                                      if (state is LoginCubitwait) {
                                         isLoding = true;
                                       }
-                                      if (state is regsterCubitsuccsed) {
+                                      if (state is LoginCubitsuccsed) {
                                         isLoding = false;
                                         Navigator.push(context,
                                             MaterialPageRoute(
@@ -121,13 +121,13 @@ class _rigsterState extends State<rigster> {
                                         contain: isLoding
                                             ? CircularProgressIndicator()
                                             : null,
-                                        titel: 'rigster',
+                                        titel: 'sing-in',
                                         onTap: () {
                                           if (email != null ||
                                               password != null) {
-                                            BlocProvider.of<rigestercubit>(
+                                            BlocProvider.of<loginCubitCubit>(
                                                     context)
-                                                .rigest(
+                                                .login(
                                                     emaill: email!,
                                                     password: password!);
                                           }

@@ -1,6 +1,6 @@
 import 'package:chat/authCubit/auth_cubit_cubit.dart';
-import 'package:chat/model/localbutton.dart';
-import 'package:chat/model/localtextfeild.dart';
+import 'package:chat/widget/localbutton.dart';
+import 'package:chat/widget/localtextfeild.dart';
 import 'package:chat/pages/chatpage.dart';
 import 'package:chat/pages/rigster.dart';
 import 'package:firebase_auth/firebase_auth.dart';

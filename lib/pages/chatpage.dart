@@ -1,4 +1,4 @@
-import 'package:chat/model/chat.dart';
+import 'package:chat/widget/chat.dart';
 import 'package:chat/model/message.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

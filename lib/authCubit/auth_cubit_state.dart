@@ -21,6 +21,12 @@ class LoginCubitsuccsed extends authCubitState {
 
 class regsterCubitInitial extends authCubitState {}
 
-class regsterCubifaild extends authCubitState {}
+class regsterCubifaild extends authCubitState {
+   final String massage;
+
+  regsterCubifaild({required this.massage});
+}
+class regsterCubiloding extends authCubitState {}
+
 
 class regsterCubitsuccsed extends authCubitState {}
