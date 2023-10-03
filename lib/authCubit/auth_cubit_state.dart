@@ -15,8 +15,8 @@ class LoginCubitwait extends authCubitState {}
 
 class LoginCubitsuccsed extends authCubitState {
   LoginCubitsuccsed({required  this.email,required this.passward});
-  String email;
-  String passward;
+  final String email;
+  final String passward;
 }
 
 class regsterCubitInitial extends authCubitState {}

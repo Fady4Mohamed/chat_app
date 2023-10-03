@@ -1,4 +1,4 @@
-import 'package:chat/widget/localtextfeild.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +12,7 @@ class loginCubitCubit extends Cubit<authCubitState> {
 void login({required String emaill,required String password}) async{
 emit(LoginCubitwait());
   try {
-                            final credential = await FirebaseAuth.instance
+                           await FirebaseAuth.instance
                                 .signInWithEmailAndPassword(
                                     email: emaill, password: password);
                                     email=emaill;
@@ -35,7 +35,7 @@ class rigestercubit extends Cubit<authCubitState> {
 void rigest({required String emaill,required String password}) async{
 emit(regsterCubiloding());
   try {
-                            var auth = await FirebaseAuth.instance
+                          await FirebaseAuth.instance
                             .createUserWithEmailAndPassword(
                                 email: emaill, password: password);
                                     email=emaill;

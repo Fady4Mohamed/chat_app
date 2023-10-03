@@ -2,21 +2,21 @@ import 'package:chat/widget/chat.dart';
 import 'package:chat/model/message.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class chatpage extends StatelessWidget {
-  chatpage({required this.email});
-  String email;
+   chatpage({required this.email});
+ final String email;
 
-  TextEditingController controller = TextEditingController();
+ final TextEditingController controller = TextEditingController();
 
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
-  CollectionReference messages =
+ final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final CollectionReference messages =
       FirebaseFirestore.instance.collection('messages');
-  String? message;
+   
   final ScrollController _scrollcontroller = ScrollController();
   @override
   Widget build(BuildContext context) {
+    String? message;
     return StreamBuilder<QuerySnapshot>(
       stream: messages.orderBy('attime', descending: true).snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -172,8 +172,7 @@ class chatpage extends StatelessWidget {
                     ),
                     Container(
                       alignment: Alignment.center,
-                      child: const ModalProgressHUD(
-                          inAsyncCall: true, child: SizedBox()),
+                      child: const CircularProgressIndicator(),
                     )
                   ]),
                 ),

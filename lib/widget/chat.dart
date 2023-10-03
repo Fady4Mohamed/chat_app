@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 
 
 class localchatMe extends StatefulWidget {
-   localchatMe({required this.message,required this.data});
-Messages message;
-String data;
-String screenshow="";
-double bading = 1;
+const   localchatMe({required this.message,required this.data});
+final Messages message;
+final String data;
 
   @override
   State<localchatMe> createState() => _localchatMeState();
 }
+String screenshow="";
+double bading = 1;
 
 class _localchatMeState extends State<localchatMe> {
   @override
@@ -20,19 +20,19 @@ class _localchatMeState extends State<localchatMe> {
       alignment: Alignment.centerLeft,
       child: GestureDetector(
         onLongPress: () {
-           widget.screenshow=widget.data;
-            widget.bading=5;
+           screenshow=widget.data;
+            bading=5;
       setState(() {
       });
         },
         onTap: (){
-      widget.screenshow="";
-       widget.bading=0;
+      screenshow="";
+       bading=0;
       setState(() { 
       });
         },
         child: Container(
-            margin:  EdgeInsets.only(bottom: widget.bading,left: 8,right: 40,top: 5),
+            margin:  EdgeInsets.only(bottom:bading,left: 8,right: 40,top: 5),
           child: Column(
             children: [
               Container(
@@ -50,7 +50,7 @@ class _localchatMeState extends State<localchatMe> {
                     child: Text(widget.message.message,style: const TextStyle(color: Color.fromARGB(255, 229, 227, 227)),),
                   ),
                 ),
-                Text(widget.screenshow,style:const TextStyle(fontSize: 11),) 
+                Text(screenshow,style:const TextStyle(fontSize: 11),) 
             ],
           ),
         ),
@@ -60,16 +60,15 @@ class _localchatMeState extends State<localchatMe> {
 }
 
 class localchatHe extends StatefulWidget {
-   localchatHe({required this.message,required this.data});
-Messages message;
-String data;
-String screenshow="";
-double bading = 1;
+  const localchatHe({required this.message,required this.data});
+final Messages message;
+final String data;
 
 
   @override
   State<localchatHe> createState() => _localchatHeState();
 }
+
 
 class _localchatHeState extends State<localchatHe> {
   @override
@@ -78,19 +77,19 @@ class _localchatHeState extends State<localchatHe> {
       alignment: Alignment.centerRight,
       child: GestureDetector(
         onLongPress: () {
-           widget.screenshow=widget.data;
-            widget.bading=5;
+           screenshow=widget.data;
+            bading=5;
       setState(() {
       });
         },
         onTap: (){
-      widget.screenshow="";
-       widget.bading=0;
+      screenshow="";
+       bading=0;
       setState(() { 
       });
         },
         child: Container(
-            margin:  EdgeInsets.only(bottom: widget.bading,left: 40,right: 8,top: 5),
+            margin:  EdgeInsets.only(bottom: bading,left: 40,right: 8,top: 5),
           child: Column(
             children: [
               Container(
@@ -108,7 +107,7 @@ class _localchatHeState extends State<localchatHe> {
                     child: Text(widget.message.message,style: const TextStyle(color: Color.fromARGB(255, 229, 227, 227)),),
                   ),
                 ),
-                Text(widget.screenshow,style:const TextStyle(fontSize: 11),) 
+                Text(screenshow,style:const TextStyle(fontSize: 11),) 
             ],
           ),
         ),
