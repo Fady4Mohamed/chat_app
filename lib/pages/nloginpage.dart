@@ -32,7 +32,7 @@ class _nloginpageState extends State<nloginpage> {
                 SizedBox(
                   height: size.height,
                   child: Image.asset(
-                    'assets/drag.jpg',
+                    'assets/photo-1559494007-9f5847c49d94.jpeg',
                     fit: BoxFit.fitHeight,
                   ),
                 ),
@@ -47,7 +47,7 @@ class _nloginpageState extends State<nloginpage> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(30),
                           child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaY: 25, sigmaX: 25),
+                            filter: ImageFilter.blur(sigmaY: 30, sigmaX: 30),
                             child: SizedBox(
                               width: size.width * .9,
                               child: Column(

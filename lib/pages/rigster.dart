@@ -35,7 +35,7 @@ class _rigsterState extends State<rigster> {
                 SizedBox(
                   height: size.height,
                   child: Image.asset(
-                    'assets/drag.jpg',
+                    'assets/photo-1559494007-9f5847c49d94.jpeg',
                     fit: BoxFit.fitHeight,
                   ),
                 ),

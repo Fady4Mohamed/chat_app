@@ -37,17 +37,22 @@ class _localchatMeState extends State<localchatMe> {
             children: [
               Container(
                 
-                  decoration: const BoxDecoration(
+                  decoration:  BoxDecoration(
                       borderRadius: BorderRadius.only(
                           topRight: Radius.circular(15),
                           topLeft: Radius.circular(15),
                           bottomRight: Radius.circular(15)),
-                           color:  Color.fromARGB(255, 59, 89, 142),
+
+                           color:  Colors.white.withOpacity(0.4),
                           ),
                  
                   child: Padding(
                     padding: const EdgeInsets.all(20),
-                    child: Text(widget.message.message,style: const TextStyle(color: Color.fromARGB(255, 229, 227, 227)),),
+                    child: Text(widget.message.message,style:  TextStyle(
+                      color: Color.fromARGB(255, 37, 37, 37),
+                      fontWeight: FontWeight.w600
+                      ),
+                    ),
                   ),
                 ),
                 Text(screenshow,style:const TextStyle(fontSize: 11),) 
@@ -94,17 +99,17 @@ class _localchatHeState extends State<localchatHe> {
             children: [
               Container(
                 
-                  decoration: const BoxDecoration(
+                  decoration:  BoxDecoration(
                       borderRadius: BorderRadius.only(
                           topRight: Radius.circular(15),
                           topLeft: Radius.circular(15),
                           bottomLeft: Radius.circular(15)),
-                           color:  Color.fromARGB(255, 107, 145, 226),
+                           color:  Color.fromARGB(255, 55, 55, 55).withOpacity(.4),
                           ),
                  
                   child: Padding(
                     padding: const EdgeInsets.all(20),
-                    child: Text(widget.message.message,style: const TextStyle(color: Color.fromARGB(255, 229, 227, 227)),),
+                    child: Text(widget.message.message,style: const TextStyle(color: Color.fromARGB(255, 32, 32, 32),fontWeight: FontWeight.w600),),
                   ),
                 ),
                 Text(screenshow,style:const TextStyle(fontSize: 11),) 

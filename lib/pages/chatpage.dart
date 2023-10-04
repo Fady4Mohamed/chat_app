@@ -2,7 +2,6 @@ import 'package:chat/widget/chat.dart';
 import 'package:chat/model/message.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 class chatpage extends StatelessWidget {
    chatpage({required this.email});
  final String email;
@@ -16,6 +15,7 @@ class chatpage extends StatelessWidget {
   final ScrollController _scrollcontroller = ScrollController();
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     String? message;
     return StreamBuilder<QuerySnapshot>(
       stream: messages.orderBy('attime', descending: true).snapshots(),
@@ -30,11 +30,12 @@ class chatpage extends StatelessWidget {
             }
           }
           return Scaffold(
+            
             appBar: AppBar(
               title: Row(
                 children: [
-                  const SizedBox(
-                    width: 100,
+                   SizedBox(
+                    width: size.width*0.5-80,
                   ),
                   Image.asset(
                     'assets/pngegg.png',
@@ -43,91 +44,101 @@ class chatpage extends StatelessWidget {
                   const Text(
                     'chat',
                     style: TextStyle(
-                        fontSize: 24, color: Color.fromARGB(255, 59, 89, 142)),
+                        fontSize: 24, color: Color.fromARGB(255, 51, 43, 118)),
                   ),
                 ],
               ),
-              backgroundColor: const Color.fromARGB(255, 219, 204, 4),
+              backgroundColor: Color.fromARGB(255, 147, 143, 82),
               automaticallyImplyLeading: false,
             ),
-            body: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color.fromARGB(255, 219, 204, 4),
-                    Color.fromARGB(255, 81, 169, 246),
-                    Color.fromARGB(255, 43, 64, 251)
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
-              ),
-              child: Column(children: [
-                Expanded(
-                  child: ListView.builder(
-                    reverse: true,
-                    controller: _scrollcontroller,
-                    itemBuilder: (context, counter) {
-                      DateTime now = DateTime.parse(
-                          snapshot.data!.docs[counter]['attime']);
-                      int year = now.year;
-                      int month = now.month;
-                      int day = now.day;
-                      int hour = now.hour;
-                      int minute = now.minute;
-                      if (snapshot.data!.docs[counter]['E-mail'] == email) {
-                        return localchatMe(
-                          message: messageslist[counter],
-                          data: '$month/$day/$year-$hour:$minute',
-                        );
-                      } else {
-                        return localchatHe(
-                          message: messageslist[counter],
-                          data: '$month/$day/$year-$hour:$minute',
-                        );
-                      }
-                    },
-                    itemCount: snapshot.data!.docs.length,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(17),
-                  child: TextField(
-                    cursorHeight: 20,
-                    controller: controller,
-                    onChanged: (value) {
-                      message = value;
-                    },
-                    cursorColor: const Color.fromARGB(255, 55, 90, 120),
-                    decoration: InputDecoration(
-                      
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: const BorderSide(
-                              color: Color.fromARGB(255, 4, 21, 103))),
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          messages.add({
-                            'message': message,
-                            'attime': DateTime.now().toString(),
-                            'E-mail': email,
-                          });
-                          controller.clear();
-                          _scrollDown();
-                        },
-                        child: const Icon(
-                          Icons.send_rounded,
-                          color: Color.fromARGB(255, 4, 21, 103),
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          borderSide: const BorderSide(
-                              color: Color.fromARGB(255, 4, 21, 103))),
+            body: SizedBox(
+              height: size.height*9,
+              child: Stack(
+                children: [
+                  SizedBox(
+                    height: size.height,
+                    width: size.width,
+                    child: Image.asset(
+                      'assets/photo-1559494007-9f5847c49d94.jpeg',
+                      fit: BoxFit.cover,
                     ),
                   ),
-                ),
-              ]),
+            
+                  Column(children: [
+                    Expanded(
+                      child: ListView.builder(
+                        reverse: true,
+                        controller: _scrollcontroller,
+                        itemBuilder: (context, counter) {
+                          DateTime now = DateTime.parse(
+                              snapshot.data!.docs[counter]['attime']);
+                          int year = now.year;
+                          int month = now.month;
+                          int day = now.day;
+                          int hour = now.hour;
+                          int minute = now.minute;
+                          if (snapshot.data!.docs[counter]['E-mail'] == email) {
+                            return localchatMe(
+                              message: messageslist[counter],
+                              data: '$month/$day/$year-$hour:$minute',
+                            );
+                          } else {
+                            return localchatHe(
+                              message: messageslist[counter],
+                              data: '$month/$day/$year-$hour:$minute',
+                            );
+                          }
+                        },
+                        itemCount: snapshot.data!.docs.length,
+                      ),
+                    ),
+                    Padding(
+                      padding:  EdgeInsets.all(17),
+                      child: Container(
+                        
+                        decoration: BoxDecoration(
+                          color:  Colors.white.withOpacity(.2),
+                          borderRadius: BorderRadius.circular(20)
+                        ),
+                        child: TextField(
+                          cursorHeight: 20,
+                          controller: controller,
+                          onChanged: (value) {
+                            message = value;
+                          },
+                          cursorColor: const Color.fromARGB(255, 55, 90, 120),
+                          decoration: InputDecoration(
+                          
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide: const BorderSide(
+                                    color: Color.fromARGB(255, 4, 21, 103))),
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                messages.add({
+                                  'message': message,
+                                  'attime': DateTime.now().toString(),
+                                  'E-mail': email,
+                                });
+                                controller.clear();
+                                _scrollDown();
+                              },
+                              child: const Icon(
+                                Icons.send_rounded,
+                                color: Color.fromARGB(255, 4, 21, 103),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                borderSide: const BorderSide(
+                                    color: Color.fromARGB(255, 4, 21, 103))),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ]),
+                ],
+              ),
             ),
           );
         } else {
