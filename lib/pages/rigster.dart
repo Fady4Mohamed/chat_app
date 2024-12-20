@@ -10,7 +10,7 @@ import '../widget/ncustomtextfield.dart';
 import '../widget/textontap.dart';
 
 class rigster extends StatefulWidget {
-  rigster({super.key});
+ const rigster({super.key});
 
   @override
   State<rigster> createState() => _rigsterState();
